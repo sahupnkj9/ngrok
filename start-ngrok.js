@@ -18,7 +18,7 @@ setTimeout(() => {
   console.log('\n🌐 Starting Ngrok tunnel for backend...');
   
   // Start ngrok for backend (port 3000)
-  const ngrok = spawn('ngrok', ['http', '7000'], {
+  const ngrok = spawn('ngrok', ['http', '3000'], {
     stdio: 'inherit',
     shell: true
   });

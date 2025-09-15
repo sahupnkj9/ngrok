@@ -10,7 +10,8 @@
     "start:backend": "node backend/start-backend.js",
     "start:both": "node start-project.js",
     "test:api": "echo 'Testing API endpoints...' && curl http://localhost:3000/api/health",
-    "start:ngrok": "node start-ngrok.js"
+    "start:ngrok": "node start-ngrok.js",
+    "setup:db": "mysql -u root -p smart_attendance_system < supabase/migrations/20250810032348_fancy_wildflower.sql"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",

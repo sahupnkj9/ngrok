@@ -3,11 +3,11 @@ const API_BASE_URL = (() => {
   if (__DEV__) {
     // For physical device testing, you need to use your computer's IP
     // Find your IP: Windows (ipconfig), macOS/Linux (ifconfig)
-    return 'http://192.168.1.100:3000/api';  // Replace with your actual computer IP
+    return 'http://localhost:3000/api';  // For local development
     // For web/simulator use: 'http://localhost:3000/api'
   } else {
     // Production URL
-    return 'https://1a18fe50f950.ngrok-free.app/api';
+    return 'https://your-ngrok-url.ngrok.io/api';  // Update with your ngrok URL
   }
 })();
 
