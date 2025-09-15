@@ -1,0 +1,97 @@
+# Smart Attendance System - API Testing
+# Use this file with Thunder Client or REST Client extension
+
+### Health Check
+GET http://localhost:3000/api/health
+
+### Student Registration - Step 1: Send OTP
+POST http://localhost:3000/api/student/register
+Content-Type: application/json
+
+{
+  "fullName": "Test Student",
+  "email": "your-test-email@gmail.com",
+  "enrollmentNumber": "CS2024999",
+  "branch": "Computer Science",
+  "year": "3",
+  "deviceId": "test_device_12345"
+}
+
+### Student Registration - Step 2: Verify OTP
+POST http://localhost:3000/api/student/verify-registration
+Content-Type: application/json
+
+{
+  "email": "your-test-email@gmail.com",
+  "otp": "123456"
+}
+
+### Student Login - Step 1: Send OTP
+POST http://localhost:3000/api/student/login
+Content-Type: application/json
+
+{
+  "email": "your-test-email@gmail.com",
+  "deviceId": "test_device_12345"
+}
+
+### Student Login - Step 2: Verify OTP
+POST http://localhost:3000/api/student/verify-login
+Content-Type: application/json
+
+{
+  "email": "your-test-email@gmail.com",
+  "otp": "123456",
+  "deviceId": "test_device_12345"
+}
+
+### Teacher Login - Step 1: Send OTP
+POST http://localhost:3000/api/teacher/login
+Content-Type: application/json
+
+{
+  "email": "john.smith@university.edu"
+}
+
+### Teacher Login - Step 2: Verify OTP
+POST http://localhost:3000/api/teacher/verify-login
+Content-Type: application/json
+
+{
+  "email": "john.smith@university.edu",
+  "otp": "123456"
+}
+
+### Get Teacher Subjects (requires authentication)
+GET http://localhost:3000/api/teacher/subjects
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+
+### Generate QR Code (requires authentication)
+POST http://localhost:3000/api/teacher/generate-qr
+Content-Type: application/json
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+
+{
+  "subjectId": 1,
+  "latitude": 40.7128,
+  "longitude": -74.0060
+}
+
+### Mark Attendance (requires authentication)
+POST http://localhost:3000/api/student/mark-attendance
+Content-Type: application/json
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+
+{
+  "sessionId": "session_1234567890_abcdef",
+  "latitude": 40.7128,
+  "longitude": -74.0060
+}
+
+### Get Student Attendance (requires authentication)
+GET http://localhost:3000/api/student/attendance
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+
+### Get Attendance Report (requires authentication)
+GET http://localhost:3000/api/teacher/attendance-report/1
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
