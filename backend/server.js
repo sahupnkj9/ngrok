@@ -48,6 +48,34 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 app.use(cors());
 app.use(express.json());
 
+// Serve static files and handle root route
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Smart Attendance System API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      health: '/api/health',
+      docs: '/api-docs',
+      student: {
+        register: 'POST /api/student/register',
+        login: 'POST /api/student/login',
+        attendance: 'GET /api/student/attendance'
+      },
+      teacher: {
+        login: 'POST /api/teacher/login',
+        subjects: 'GET /api/teacher/subjects',
+        generateQR: 'POST /api/teacher/generate-qr'
+      }
+    }
+  });
+});
+
+// Handle favicon requests
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end();
+});
+
 // Swagger UI setup
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -1070,9 +1098,15 @@ app.use((err, req, res, next) => {
 });
 
 // 404 handler for undefined routes
-app.use('*', (req, res) => {
+app.use('/api/*', (req, res) => {
   console.log(`❌ Route not found: ${req.method} ${req.originalUrl}`);
   res.status(404).json({ error: 'Route not found' });
+});
+
+// Handle all other non-API routes
+app.use('*', (req, res) => {
+  console.log(`🔄 Redirecting to API docs: ${req.method} ${req.originalUrl}`);
+  res.redirect('/api-docs');
 });
 
 // Test database connection on startup

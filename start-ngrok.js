@@ -48,6 +48,7 @@ backend.on('error', (error) => {
 console.log('\n📋 Instructions:');
 console.log('1. Wait for ngrok to start and show the public URL');
 console.log('2. Copy the https URL (e.g., https://abc123.ngrok.io)');
-console.log('3. Update services/api.ts with the ngrok URL');
-console.log('4. Share the ngrok URL with your teacher');
-console.log('5. Your teacher can access the API at: https://YOUR_NGROK_URL/api-docs');
+console.log('3. Test the API: visit https://YOUR_NGROK_URL (shows API info)');
+console.log('4. API Documentation: https://YOUR_NGROK_URL/api-docs');
+console.log('5. Update services/api.ts with: https://YOUR_NGROK_URL/api');
+console.log('6. Then start frontend: npm run dev');
